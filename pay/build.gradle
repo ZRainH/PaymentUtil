@@ -1,11 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
-apply plugin: 'maven'
+apply from: 'maven_build.gradle'
 
 android {
     compileSdkVersion 28
-
 
     defaultConfig {
         minSdkVersion 19
@@ -22,6 +21,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    androidExtensions {
+        experimental = true
     }
 
 }
@@ -41,28 +44,13 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation files('libs\\UPPayAssistEx_3.4.6.jar')
+    implementation files('libs\\UPPayPluginExPro_3.4.6.jar')
 
 }
 repositories {
     mavenCentral()
 }
 
-ext {
-    GITHUB_REPO_PATH = "D:\\WXWork\\PaymentUtil"
-    PUBLISH_GROUP_ID = 'com.pay'
-    PUBLISH_ARTIFACT_ID = 'utils'
-    PUBLISH_VERSION = '1.0.0'
-}
 
-uploadArchives {
-    repositories.mavenDeployer {
-        def deployPath = file(project.GITHUB_REPO_PATH)
-        repository(url: "file://${deployPath.absolutePath}")
-        pom.project {
-            groupId project.PUBLISH_GROUP_ID
-            artifactId project.PUBLISH_ARTIFACT_ID
-            version project.PUBLISH_VERSION
-        }
-    }
-}
 

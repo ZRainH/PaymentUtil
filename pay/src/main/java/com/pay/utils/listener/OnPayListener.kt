@@ -1,6 +1,6 @@
-package com.pay.utils.factory.listener
+package com.pay.utils.listener
 
-interface OnPayLinstener {
+interface OnPayListener {
 
     fun onSuccess()
 

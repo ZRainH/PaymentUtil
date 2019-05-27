@@ -5,7 +5,7 @@ import android.app.Activity
 import com.alipay.sdk.app.PayTask
 import com.pay.utils.factory.bean.AliPayResult
 import com.pay.utils.factory.bean.ServerException
-import com.pay.utils.factory.listener.OnPayLinstener
+import com.pay.utils.listener.OnPayListener
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,7 +15,7 @@ import io.reactivex.schedulers.Schedulers
 class AliPaymentProduct : AliPayment {
     //支付
     @SuppressLint("CheckResult")
-    override fun startAliPayment(activity: Activity, orderInfo: String, listener: OnPayLinstener) {
+    override fun startAliPayment(activity: Activity, orderInfo: String, listener: OnPayListener) {
         Observable.create<Map<String, String>> {
             val payTask = PayTask(activity)
             val result = payTask.payV2(orderInfo, true)
